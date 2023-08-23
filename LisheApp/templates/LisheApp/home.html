@@ -1,0 +1,561 @@
+{% extends 'LisheApp/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Admin Dashboard</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+ 
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url 'home' %}" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">LISHE APP</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        {% csrf_token %}
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword" required>
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+       <!--  <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li> -->
+        <!-- End Search Icon-->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="/admin" data-bs-toggle="" style="padding: 10px;">
+            
+            <span class="badge bg-primary badge-number" style="padding: 10px;font-size: 16px;">Admin</span>
+          </a>
+          <!-- End Notification Icon -->
+
+         
+
+
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="{% url 'home' %}">
+          <i class="bi bi-grid"></i>
+          <span>DASHBOARD</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>LISHE</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'AddLishe' %}">
+              <i class="bi bi-circle"></i><span>Add Lishe Item</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'LisheItems' %}">
+              <i class="bi bi-circle"></i><span>Lishe Items</span>
+            </a>
+          </li>
+        
+        </ul>
+      </li><!-- End Components Nav -->
+
+
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>ELIMU YA LISHE</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'AddElimuYaLishe' %}">
+              <i class="bi bi-circle"></i><span>Add Elimu Ya Lishe Items</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'ElimuYaLisheItems' %}">
+              <i class="bi bi-circle"></i><span>Elimu Ya Lishe Items</span>
+            </a>
+          </li>
+           </ul>
+      </li><!-- End Forms Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>BIDHAA ZETU</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'AddBidhaaZetu' %}">
+              <i class="bi bi-circle"></i><span>Add Bidhaa Zetu Item</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'BidhaaZetuItems' %}">
+              <i class="bi bi-circle"></i><span>Bidhaa Zetu</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Tables Nav -->
+
+
+
+
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-gem"></i><span>MAKUNDI YA CHAKULA</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'AddMakundiYaChakula' %}">
+              <i class="bi bi-circle"></i><span>Add Kundi La Chakula</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'MakundiYaChakulaItems' %}">
+              <i class="bi bi-circle"></i><span>Makundi Ya Chakula</span>
+            </a>
+          </li>
+         
+        </ul>
+      </li><!-- End Icons Nav -->
+
+
+
+
+
+
+
+<li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-bar-chart"></i><span>POSTER NA PICHA</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'AddPosterNaPicha' %}">
+              <i class="bi bi-circle"></i><span>Add Poster Na Picha</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'PosterNaPichaItems' %}">
+              <i class="bi bi-circle"></i><span>Posters Na Picha</span>
+            </a>
+          </li>
+         
+        </ul>
+      </li><!-- End Charts Nav -->
+
+
+
+
+
+
+
+
+ <li class="nav-heading" style="color: red;font-weight: bold;font-size: 18px;">APIS</li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="http://127.0.0.1:8000/docs/">
+          <i class="bi bi-person"></i>
+          <span>PROJECT APIS</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="http://127.0.0.1:8000/redoc/">
+          <i class="bi bi-person"></i>
+          <span>DOCS</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+
+
+
+
+
+
+
+     
+     
+
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1 style="color: white">Dashboard</h1>
+      
+    </div><!-- End Page Title -->
+
+  
+
+
+    <section class="section dashboard">
+      <!-- mwanzo wa row kubwa -->
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+          <div class="row"><!-- mwanzo wa row ndogo -->
+
+            <!-- Sales Card -->
+            <div class="col-xxl-4 col-md-4">
+              <div class="card info-card sales-card">
+
+               
+
+                <div class="card-body">
+                  <h5 class="card-title">DAY ONE </h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <img src="{% static 'LisheApp/assets/img/DAYS/d1.png' %}" style="width: 40px;height: 40px;">
+                    </div>
+                    <div class="ps-3">
+                       <a href="{% url 'AddDayOne' %}">                          <button class="btn btn-primary" style="padding: 10px;border-radius: 8px;font-size: 16px;border-top-right-radius: 0px;margin-left: 10px;margin-bottom: 10px;margin-top: 20px;"><i class="bi bi-plus" style="font-size: 18px;font-weight: bold;"></i></button></a>
+
+                        <a href="{% url 'DayOneItems' %}"> 
+                           <button class="btn btn-success" style="padding: 10px;border-radius: 8px;font-size: 16px;border-top-right-radius: 0px;margin-left: 10px;margin-bottom: 10px;margin-top: 20px;"><i class="bi bi-eye" style="font-size: 18px;font-weight: bold;"></i></button></a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Sales Card -->
+
+
+
+
+
+<!-- Sales Card -->
+            <div class="col-xxl-4 col-md-4">
+              <div class="card info-card sales-card">
+
+               
+
+                <div class="card-body">
+                  <h5 class="card-title">DAY TWO </h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                     <img src="{% static 'LisheApp/assets/img/DAYS/d2.png' %}" style="width: 40px;height: 40px;">                    </div>
+                    <div class="ps-3">
+                      <a href="{% url 'AddDayTwo' %}">                          <button class="btn btn-primary" style="padding: 10px;border-radius: 8px;font-size: 16px;border-top-right-radius: 0px;margin-left: 10px;margin-bottom: 10px;margin-top: 20px;"><i class="bi bi-plus" style="font-size: 18px;font-weight: bold;"></i></button></a>
+
+                        <a href="{% url 'DayTwoItems' %}"> 
+                           <button class="btn btn-success" style="padding: 10px;border-radius: 8px;font-size: 16px;border-top-right-radius: 0px;margin-left: 10px;margin-bottom: 10px;margin-top: 20px;"><i class="bi bi-eye" style="font-size: 18px;font-weight: bold;"></i></button></a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Sales Card -->
+
+
+
+
+
+<!-- Sales Card -->
+            <div class="col-xxl-4 col-md-4">
+              <div class="card info-card sales-card">
+
+               
+
+                <div class="card-body">
+                  <h5 class="card-title">DAY THREE </h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <img src="{% static 'LisheApp/assets/img/DAYS/d3.jpeg' %}" style="width: 40px;height: 40px;">                    </div>
+                    <div class="ps-3">
+                     <a href="{% url 'AddDayThree' %}">                         <button class="btn btn-primary" style="padding: 10px;border-radius: 8px;font-size: 16px;border-top-right-radius: 0px;margin-left: 10px;margin-bottom: 10px;margin-top: 20px;"><i class="bi bi-plus" style="font-size: 18px;font-weight: bold;"></i></button></a>
+
+                        <a href="{% url 'DayThreeItems' %}"> 
+                           <button class="btn btn-success" style="padding: 10px;border-radius: 8px;font-size: 16px;border-top-right-radius: 0px;margin-left: 10px;margin-bottom: 10px;margin-top: 20px;"><i class="bi bi-eye" style="font-size: 18px;font-weight: bold;"></i></button></a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Sales Card -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+        
+
+
+
+
+
+          </div><!-- mwisho wa row ndogo -->
+
+
+
+
+
+
+
+
+    <div class="row"><!-- mwanzo wa row ndogo -->
+
+            <!-- Sales Card -->
+            <div class="col-xxl-4 col-md-4">
+              <div class="card info-card sales-card">
+
+               
+
+                <div class="card-body">
+                  <h5 class="card-title">DAY FOUR </h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                     <img src="{% static 'LisheApp/assets/img/DAYS/d4.jpeg' %}" style="width: 40px;height: 40px;">
+                    </div>
+                    <div class="ps-3">
+                      <a href="{% url 'AddDayFour' %}">                         <button class="btn btn-primary" style="padding: 10px;border-radius: 8px;font-size: 16px;border-top-right-radius: 0px;margin-left: 10px;margin-bottom: 10px;margin-top: 20px;"><i class="bi bi-plus" style="font-size: 18px;font-weight: bold;"></i></button></a>
+
+                        <a href="{% url 'DayFourItems' %}"> 
+                           <button class="btn btn-success" style="padding: 10px;border-radius: 8px;font-size: 16px;border-top-right-radius: 0px;margin-left: 10px;margin-bottom: 10px;margin-top: 20px;"><i class="bi bi-eye" style="font-size: 18px;font-weight: bold;"></i></button></a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Sales Card -->
+
+
+
+
+
+<!-- Sales Card -->
+            <div class="col-xxl-4 col-md-4">
+              <div class="card info-card sales-card">
+
+               
+
+                <div class="card-body">
+                  <h5 class="card-title">DAY FIVE </h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                     <img src="{% static 'LisheApp/assets/img/DAYS/d5.jpeg' %}" style="width: 40px;height: 40px;">
+                    </div>
+                    <div class="ps-3">
+                       <a href="{% url 'AddDayFive' %}">                        <button class="btn btn-primary" style="padding: 10px;border-radius: 8px;font-size: 16px;border-top-right-radius: 0px;margin-left: 10px;margin-bottom: 10px;margin-top: 20px;"><i class="bi bi-plus" style="font-size: 18px;font-weight: bold;"></i></button></a>
+
+                        <a href="{% url 'DayFiveItems' %}"> 
+                           <button class="btn btn-success" style="padding: 10px;border-radius: 8px;font-size: 16px;border-top-right-radius: 0px;margin-left: 10px;margin-bottom: 10px;margin-top: 20px;"><i class="bi bi-eye" style="font-size: 18px;font-weight: bold;"></i></button></a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Sales Card -->
+
+
+
+
+
+<!-- Sales Card -->
+            <div class="col-xxl-4 col-md-4">
+              <div class="card info-card sales-card">
+
+               
+
+                <div class="card-body">
+                  <h5 class="card-title">DAY SIX </h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <img src="{% static 'LisheApp/assets/img/DAYS/d6.jpeg' %}" style="width: 40px;height: 40px;">
+                    </div>
+                    <div class="ps-3">
+                      <a href="{% url 'AddDaySix' %}">                          <button class="btn btn-primary" style="padding: 10px;border-radius: 8px;font-size: 16px;border-top-right-radius: 0px;margin-left: 10px;margin-bottom: 10px;margin-top: 20px;"><i class="bi bi-plus" style="font-size: 18px;font-weight: bold;"></i></button></a>
+
+                        <a href="{% url 'DaySixItems' %}"> 
+                           <button class="btn btn-success" style="padding: 10px;border-radius: 8px;font-size: 16px;border-top-right-radius: 0px;margin-left: 10px;margin-bottom: 10px;margin-top: 20px;"><i class="bi bi-eye" style="font-size: 18px;font-weight: bold;"></i></button></a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Sales Card -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+        
+
+
+
+
+
+          </div><!-- mwisho wa row ndogo -->
+
+
+
+
+
+
+
+
+
+    <div class="row"><!-- mwanzo wa row ndogo -->
+
+            <!-- Sales Card -->
+            <div class="col-xxl-4 col-md-4">
+              <div class="card info-card sales-card">
+
+               
+
+                <div class="card-body">
+                  <h5 class="card-title">DAY SEVEN </h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                       <img src="{% static 'LisheApp/assets/img/DAYS/d7.jpeg' %}" style="width: 40px;height: 40px;">
+                    </div>
+                    <div class="ps-3">
+                      <a href="{% url 'AddDaySeven' %}">                          <button class="btn btn-primary" style="padding: 10px;border-radius: 8px;font-size: 16px;border-top-right-radius: 0px;margin-left: 10px;margin-bottom: 10px;margin-top: 20px;"><i class="bi bi-plus" style="font-size: 18px;font-weight: bold;"></i></button></a>
+
+                        <a href="{% url 'DaySevenItems' %}"> 
+                           <button class="btn btn-success" style="padding: 10px;border-radius: 8px;font-size: 16px;border-top-right-radius: 0px;margin-left: 10px;margin-bottom: 10px;margin-top: 20px;"><i class="bi bi-eye" style="font-size: 18px;font-weight: bold;"></i></button></a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Sales Card -->
+
+
+
+
+
+
+
+
+
+          </div><!-- mwisho wa row ndogo -->
+
+
+
+
+
+        </div><!-- End Left side columns -->
+
+      
+
+
+
+
+
+
+      </div><!-- mwisho wa row kubwa -->
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Lishe Project Apis</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://DimosoCv.pythonanywhere.com/" style="color: red;font-weight: bold;">Shukuru Dimoso</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+
+</body>
+
+</html>
+
+{% endblock %}
